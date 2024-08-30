@@ -1,0 +1,16 @@
+---
+rtr1:
+  hostname: "172.168.16.1"
+  groups:
+    - cisco
+  data:
+    role: "router"
+    site: "HQ"
+  
+rtr2:
+  hostname: "192.168.1.2"
+  groups:
+    - cisco
+  data:
+    role: "router"
+    site: "Branch1"

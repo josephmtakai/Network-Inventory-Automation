@@ -1,0 +1,10 @@
+---
+cisco:
+  platform: "ios"
+  username: "your_username"
+  password: "your_password"
+  connection_options:
+    netmiko:
+      extras:
+        secret: "your_enable_password"
+        global_delay_factor: 2

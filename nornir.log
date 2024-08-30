@@ -1,0 +1,345 @@
+2024-08-30 17:10:12,809 -  nornir.core -     INFO -        run() - Running task 'backup_configurations' with args {} on 2 hosts
+2024-08-30 17:10:14,943 - nornir.core.task -    ERROR -      start() - Host 'rtr1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1139, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\paramiko\client.py", line 409, in connect
+    raise NoValidConnectionsError(errors)
+paramiko.ssh_exception.NoValidConnectionsError: [Errno None] Unable to connect to port 22 on 192.168.1.1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\connections\netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\ssh_dispatcher.py", line 401, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 490, in __init__
+    self._open()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 495, in _open
+    self.establish_connection()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1161, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 192.168.1.1:22
+
+
+
+2024-08-30 17:10:14,943 - nornir.core.task -    ERROR -      start() - Host 'rtr1': task 'backup_configurations' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JAY\Desktop\Network Inventory Automation\backup_configs.py", line 9, in backup_configurations
+    result = task.run(task=netmiko_send_command, command_string=command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2024-08-30 17:10:22,825 - nornir.core.task -    ERROR -      start() - Host 'rtr2': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1139, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\paramiko\client.py", line 386, in connect
+    sock.connect(addr)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\connections\netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\ssh_dispatcher.py", line 401, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 490, in __init__
+    self._open()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 495, in _open
+    self.establish_connection()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1161, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 192.168.1.2:22
+
+
+
+2024-08-30 17:10:22,825 - nornir.core.task -    ERROR -      start() - Host 'rtr2': task 'backup_configurations' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JAY\Desktop\Network Inventory Automation\backup_configs.py", line 9, in backup_configurations
+    result = task.run(task=netmiko_send_command, command_string=command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2024-08-30 17:11:05,115 -  nornir.core -     INFO -        run() - Running task 'backup_configurations' with args {} on 2 hosts
+2024-08-30 17:11:07,185 - nornir.core.task -    ERROR -      start() - Host 'rtr1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1139, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\paramiko\client.py", line 409, in connect
+    raise NoValidConnectionsError(errors)
+paramiko.ssh_exception.NoValidConnectionsError: [Errno None] Unable to connect to port 22 on 192.168.1.1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\connections\netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\ssh_dispatcher.py", line 401, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 490, in __init__
+    self._open()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 495, in _open
+    self.establish_connection()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1161, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 192.168.1.1:22
+
+
+
+2024-08-30 17:11:07,185 - nornir.core.task -    ERROR -      start() - Host 'rtr1': task 'backup_configurations' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JAY\Desktop\Network Inventory Automation\backup_configs.py", line 9, in backup_configurations
+    result = task.run(task=netmiko_send_command, command_string=command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2024-08-30 17:11:15,122 - nornir.core.task -    ERROR -      start() - Host 'rtr2': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1139, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\paramiko\client.py", line 386, in connect
+    sock.connect(addr)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\connections\netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\ssh_dispatcher.py", line 401, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 490, in __init__
+    self._open()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 495, in _open
+    self.establish_connection()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1161, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 192.168.1.2:22
+
+
+
+2024-08-30 17:11:15,122 - nornir.core.task -    ERROR -      start() - Host 'rtr2': task 'backup_configurations' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JAY\Desktop\Network Inventory Automation\backup_configs.py", line 9, in backup_configurations
+    result = task.run(task=netmiko_send_command, command_string=command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2024-08-30 17:12:48,397 -  nornir.core -     INFO -        run() - Running task 'backup_configurations' with args {} on 2 hosts
+2024-08-30 17:12:50,415 - nornir.core.task -    ERROR -      start() - Host 'rtr1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1139, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\paramiko\client.py", line 409, in connect
+    raise NoValidConnectionsError(errors)
+paramiko.ssh_exception.NoValidConnectionsError: [Errno None] Unable to connect to port 22 on 172.168.16.1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\connections\netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\ssh_dispatcher.py", line 401, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 490, in __init__
+    self._open()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 495, in _open
+    self.establish_connection()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1161, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 172.168.16.1:22
+
+
+
+2024-08-30 17:12:50,430 - nornir.core.task -    ERROR -      start() - Host 'rtr1': task 'backup_configurations' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JAY\Desktop\Network Inventory Automation\backup_configs.py", line 9, in backup_configurations
+    result = task.run(task=netmiko_send_command, command_string=command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2024-08-30 17:12:58,411 - nornir.core.task -    ERROR -      start() - Host 'rtr2': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1139, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\paramiko\client.py", line 386, in connect
+    sock.connect(addr)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\tasks\netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir_netmiko\connections\netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\ssh_dispatcher.py", line 401, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 490, in __init__
+    self._open()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 495, in _open
+    self.establish_connection()
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\netmiko\base_connection.py", line 1161, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: cisco_ios 192.168.1.2:22
+
+
+
+2024-08-30 17:12:58,411 - nornir.core.task -    ERROR -      start() - Host 'rtr2': task 'backup_configurations' failed with traceback:
+Traceback (most recent call last):
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 99, in start
+    r = self.task(self, **self.params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JAY\Desktop\Network Inventory Automation\backup_configs.py", line 9, in backup_configurations
+    result = task.run(task=netmiko_send_command, command_string=command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\JAY\Desktop\Network Inventory Automation\.venv\Lib\site-packages\nornir\core\task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
